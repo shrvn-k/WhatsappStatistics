@@ -2,17 +2,17 @@ import re
 import operator
 
 msglist=[]		#this list will contain dictionary of each message
-infile=open('WhatsApp Chat with Namratha.txt', 'r')
+infile=open('WhatsApp Chat with 601-1.txt', 'r')
 
 badwords=[
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* was added$'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* were added$'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* added .*$'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* left$'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* was removed$'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* changed to \+.*'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* created group .*'),
-re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d \w\w .* Messages you send to this chat and calls are now secured with end-to-end encryption.')
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* was added$'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* were added$'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* added .*$'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* left$'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* was removed$'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* changed to \+.*'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* created group .*'),
+re.compile('^\d?\d/\d?\d/\d\d, \d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)? .* Messages you send to this chat and calls are now secured with end-to-end encryption.')
 ]
 fucksgiven=0
 
@@ -20,7 +20,7 @@ for aline in infile.readlines():
 	if any(badword.match(aline) for badword in badwords): #this will skip unwanted messages
 		continue
 	msg={}
-	isNewMsg=re.search(r'^(\d?\d/\d?\d/\d\d), (\d?\d:\d?\d \w\w) - (.*?): (.*)',aline) #regex matching a new message line
+	isNewMsg=re.search(r'^(\d?\d/\d?\d/\d\d), (\d?\d:\d?\d(?: [AaPp]\.?[Mm]\.?)?) - (.*?): (.*)',aline) #regex matching a new message line
 	if isNewMsg:
 		#add everything to a dictionary
 		msg['date'] = isNewMsg.group(1)
