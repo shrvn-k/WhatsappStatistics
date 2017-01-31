@@ -45,10 +45,6 @@ for msg in msglist:
 	else:
 		memberstats[msg['sender']]=1
 
-	nfucks=re.findall(r'Fuck',msg['message'],re.IGNORECASE)
-	if(nfucks):
-		fucksgiven+=len(nfucks)
-
 print("Top five most active members:")
 sortedmembers = sorted(memberstats.items(), key=operator.itemgetter(1), reverse=True)
 for member in sortedmembers[0:5]:
@@ -61,5 +57,3 @@ leastactive=min(memberstats.iteritems(), key=operator.itemgetter(1))[0]
 print("Least active member:")
 print(leastactive+" sent "+str(memberstats[leastactive])+" messages")
 
-print("")
-print(str(fucksgiven)+" fucks were given")
